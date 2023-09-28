@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-// import "ol/ol.css";
-
 import { Map } from "ol";
 import TileLayer from "ol/layer/Tile.js";
 import View from "ol/View.js";
 import XYZ from "ol/source/XYZ";
+import { fromLonLat } from "ol/proj";
 
 function CustomMap() {
   const [map, setMap] = useState();
+  const [center, setCenter] = useState([15.2, 45.1]);
   const mapTargetElement = useRef(null);
 
   useEffect(() => {
@@ -20,16 +20,14 @@ function CustomMap() {
         }),
       ],
       view: new View({
-        center: [0, 0],
-        zoom: 0,
+        center: fromLonLat(center),
+        zoom: 7,
         minZoom: 0,
         maxZoom: 28,
       }),
     });
     map.setTarget(mapTargetElement.current || "");
     setMap(map);
-
-    console.log(map);
     //prevent multiple maps from being added to the map container on a re-render
     return () => map.setTarget("");
   }, []);
@@ -39,9 +37,10 @@ function CustomMap() {
       ref={mapTargetElement}
       className="map"
       style={{
-        width: "100vw",
-        height: "100vh",
+        width: "760px",
+        height: "360px",
         position: "relative",
+        margin: "120px auto",
       }}
     ></div>
   );
