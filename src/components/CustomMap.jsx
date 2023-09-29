@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Map } from "ol";
 import TileLayer from "ol/layer/Tile.js";
 import View from "ol/View.js";
@@ -8,7 +8,6 @@ import { fromLonLat } from "ol/proj";
 function CustomMap() {
   const [map, setMap] = useState();
   const [center, setCenter] = useState([15.2, 45.1]);
-  const mapTargetElement = useRef(null);
 
   useEffect(() => {
     const map = new Map({
@@ -26,7 +25,7 @@ function CustomMap() {
         maxZoom: 28,
       }),
     });
-    map.setTarget(mapTargetElement.current || "");
+    map.setTarget("map");
     setMap(map);
     //prevent multiple maps from being added to the map container on a re-render
     return () => map.setTarget("");
@@ -34,8 +33,7 @@ function CustomMap() {
 
   return (
     <div
-      ref={mapTargetElement}
-      className="map"
+      id="map"
       style={{
         width: "760px",
         height: "360px",
