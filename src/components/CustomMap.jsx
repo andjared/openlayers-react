@@ -15,7 +15,7 @@ function CustomMap() {
       layers: [
         new TileLayer({
           source: new XYZ({
-            url: "https://api.mapbox.com/styles/v1/andja-z/clmz7sti002zy01r7eih71srx/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kamEteiIsImEiOiJja3g2NHN6aTIwMDI2MnFtdXRobzhwMTFzIn0.g8g-84TIv5w9txhjy84dZw",
+            url: `https://api.mapbox.com/styles/v1/andja-z/clmz7sti002zy01r7eih71srx/tiles/256/{z}/{x}/{y}?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`,
           }),
         }),
       ],

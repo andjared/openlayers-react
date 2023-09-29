@@ -2,7 +2,7 @@ import CustomMap from "./components/CustomMap";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App ">
       <CustomMap />
     </div>
   );
